@@ -19,4 +19,15 @@ describe Oystercard do
       expect { subject.top_up(1) }.to raise_error "Cannot hold more than #{maximum_balance}"
     end
   end
+  describe '#deduct' do
+    context 'when 50 are being added to the card' do
+      before(:each) { subject.top_up(50) }
+      it 'deducts 30' do
+        expect { subject.deduct(20) }.to change(subject, :balance).from(50).to(30)
+      end
+      it 'deducts 10' do
+        expect { subject.deduct(10) }.to change(subject, :balance).from(50).to(40)
+      end
+    end
+  end
 end
