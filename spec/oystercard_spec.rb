@@ -19,26 +19,35 @@ describe Oystercard do
       expect { subject.top_up(1) }.to raise_error "Cannot hold more than #{maximum_balance}"
     end
   end
-  describe '#deduct' do
-    context 'when 50 are being added to the card' do
-      before(:each) { subject.top_up(50) }
-      it 'deducts 30' do
-        expect { subject.deduct(20) }.to change(subject, :balance).from(50).to(30)
-      end
-      it 'deducts 10' do
-        expect { subject.deduct(10) }.to change(subject, :balance).from(50).to(40)
+  context 'when sufficient balance (equal to or over the minimum required (£1))' do
+    before(:each) { subject.top_up(50) }
+    it 'can touch in' do
+      expect { subject.touch_in }.to change(subject, :in_journey).from(false).to(true)
+    end
+    it 'can touch out' do
+      subject.touch_in
+      subject.touch_out
+      
+      expect(subject.in_journey).to eq false
+    end
+    context 'when journey is complete' do
+      it 'deducts the amount upon touching out' do
+        subject.touch_in
+        expect { subject.touch_out }.to change(subject, :balance).by(-Oystercard::MINIMUM_CHARGE)
       end
     end
-  end
-  it 'can touch in' do
-    expect { subject.touch_in }.to change(subject, :in_journey).from(false).to(true)
   end
   it 'in_journey returns false by default' do
     expect(subject.in_journey).to eq false
   end
-  it 'can touch out' do
-    subject.touch_in
-    subject.touch_out
-    expect(subject.in_journey).to eq false
+  
+  context 'when insufficient balance (with an amount below the minimum(£1))' do
+    describe '#touch in' do
+      it 'raises error' do
+        minimum_balance = Oystercard::MINIMUM_CHARGE
+        
+        expect { subject.touch_in }.to raise_error "Cannot enter if balance is below £#{minimum_balance}"
+      end
+    end
   end
 end

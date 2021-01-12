@@ -61,4 +61,17 @@ RuntimeError (Cannot enter if balance is below £1)
  => false 
 2.7.0 :010 > oyster.in_journey
  => false 
+
+In order to pay for my journey
+As a customer
+When my journey is complete, I need the correct amount deducted from my card
+
+ 2.7.0 :003 > oyster.top_up(10)
+ => 10 
+2.7.0 :004 > oyster.touch_in
+ => true 
+2.7.0 :005 > oyster.touch_out
+ => false 
+2.7.0 :006 > oyster.balance
+ => 9 
 ```
