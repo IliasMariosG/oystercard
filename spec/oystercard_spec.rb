@@ -30,4 +30,15 @@ describe Oystercard do
       end
     end
   end
+  it 'can touch in' do
+    expect { subject.touch_in }.to change(subject, :in_journey).from(false).to(true)
+  end
+  it 'in_journey returns false by default' do
+    expect(subject.in_journey).to eq false
+  end
+  it 'can touch out' do
+    subject.touch_in
+    subject.touch_out
+    expect(subject.in_journey).to eq false
+  end
 end
