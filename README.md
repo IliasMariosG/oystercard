@@ -74,4 +74,25 @@ When my journey is complete, I need the correct amount deducted from my card
  => false 
 2.7.0 :006 > oyster.balance
  => 9 
+
+ In order to pay for my journey
+As a customer
+I need to know where I've travelled from
+
+2.7.0 :003 > oyster
+ => #<Oystercard:0x00007ffb9e1412b0 @balance=0, @entry_station=nil> 
+2.7.0 :004 > oyster.top_up(5)
+ => 5 
+2.7.0 :005 > oyster.touch_in('Paddington')
+ => "Paddington" 
+2.7.0 :006 > oyster
+ => #<Oystercard:0x00007ffb9e1412b0 @balance=5, @entry_station="Paddington"> 
+2.7.0 :007 > oyster.in_journey?
+ => true 
+2.7.0 :008 > oyster.touch_out
+ => nil 
+2.7.0 :009 > oyster
+ => #<Oystercard:0x00007ffb9e1412b0 @balance=4, @entry_station=nil> 
+2.7.0 :010 > oyster.in_journey?
+ => false 
 ```
