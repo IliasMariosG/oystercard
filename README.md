@@ -126,5 +126,10 @@ I want to see all my previous trips
  2.7.0 :005 > oyster.touch_out('Marylebone')
  => nil 
  2.7.0 :007 > oyster.show_journeys
- => [{:entry_station=>"Paddington", :exit_station=>"Marylebone"}] 
+ => [{:entry_station=>"Paddington", :exit_station=>"Marylebone"}]
+
+ In order to know how far I have travelled
+As a customer
+I want to know what zone a station is in
+
 ```
