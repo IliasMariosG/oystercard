@@ -7,11 +7,10 @@ class Oystercard
   def initialize
     @balance = 0
     @journeys_history = []
-    #@journey_storage = {:entry_station => nil, :exit_station => nil}
   end
 
   def top_up(amount_of_money)
-    raise 'Cannot hold more than 90' if @balance + amount_of_money > MAXIMUM_BALANCE
+    raise 'Cannot hold more than £90' if @balance + amount_of_money > MAXIMUM_BALANCE
 
     @balance += amount_of_money
   end
@@ -26,7 +25,6 @@ class Oystercard
     deduct(MINIMUM_CHARGE)
     @exit_station = station
     add_journey
-    @entry_station = nil
   end
 
   def in_journey?
@@ -36,7 +34,6 @@ class Oystercard
   def show_journeys
     @journeys_history
   end
-
   
   private
 
@@ -49,6 +46,7 @@ class Oystercard
   end
 
   def add_journey
-    @journeys_history << { entry_station: @entry_station , exit_station: @exit_station}
+    @journeys_history << { entry_station: @entry_station , exit_station: @exit_station }
+    @entry_station = nil
   end
 end

@@ -94,5 +94,37 @@ I need to know where I've travelled from
 2.7.0 :009 > oyster
  => #<Oystercard:0x00007ffb9e1412b0 @balance=4, @entry_station=nil> 
 2.7.0 :010 > oyster.in_journey?
- => false 
+ => false
+
+In order to know where I have been
+As a customer
+I want to see all my previous trips
+
+ 2.7.0 :004 > oyster.top_up(5)
+ => 5 
+2.7.0 :005 > oyster.touch_in('Paddington')
+ => "Paddington" 
+2.7.0 :006 > oyster.touch_out('Marylebone')
+ => nil 
+2.7.0 :007 > oyster.journeys_history
+ => [{:entry_station=>"Paddington", :exit_station=>"Marylebone"}] 
+2.7.0 :008 > oyster.touch_in('Pimlico')
+ => "Pimlico" 
+2.7.0 :009 > oyster.journeys_history
+ => [{:entry_station=>"Paddington", :exit_station=>"Marylebone"}] 
+2.7.0 :010 > oyster.touch_out('Vauxhaull')
+ => nil 
+2.7.0 :011 > oyster.journeys_history
+ => [{:entry_station=>"Paddington", :exit_station=>"Marylebone"}, {:entry_station=>"Pimlico", :exit_station=>"Vauxhaull"}]  
+ oyster.show_journeys
+ => [{:entry_station=>"Paddington", :exit_station=>"Marylebone"}] 
+
+ 2.7.0 :003 > oyster.top_up(5)
+ => 5 
+2.7.0 :004 > oyster.touch_in('Paddington')
+ => "Paddington" 
+ 2.7.0 :005 > oyster.touch_out('Marylebone')
+ => nil 
+ 2.7.0 :007 > oyster.show_journeys
+ => [{:entry_station=>"Paddington", :exit_station=>"Marylebone"}] 
 ```
