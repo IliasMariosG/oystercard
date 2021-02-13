@@ -1,24 +1,36 @@
 # oystercard
 
-User stories
+User stories & feature tests output with the use of irb:
 
 ```text
 In order to use public transport
 As a customer
 I want money on my card
 
+:pending output
+```
+```text
 In order to keep using public transport
 As a customer
 I want to add money to my card
 
+:pending output
+```
+```text
 In order to protect my money from theft or loss
 As a customer
 I want a maximum limit (of £90) on my card
 
+:pending output
+```
+```text
 In order to pay for my journey
 As a customer
 I need my fare deducted from my card
 
+:pending output
+```
+```text
 In order to get through the barriers.
 As a customer
 I need to touch in and out.
@@ -36,7 +48,9 @@ I need to touch in and out.
  => false 
 2.7.0 :007 > oyster.in_journey
  => false
+```
 
+```text
 In order to pay for my journey
 As a customer
 I need to have the minimum amount (£1) for a single journey.
@@ -61,7 +75,9 @@ RuntimeError (Cannot enter if balance is below £1)
  => false 
 2.7.0 :010 > oyster.in_journey
  => false 
+```
 
+```text
 In order to pay for my journey
 As a customer
 When my journey is complete, I need the correct amount deducted from my card
@@ -74,8 +90,9 @@ When my journey is complete, I need the correct amount deducted from my card
  => false 
 2.7.0 :006 > oyster.balance
  => 9 
-
- In order to pay for my journey
+```
+```text
+In order to pay for my journey
 As a customer
 I need to know where I've travelled from
 
@@ -95,7 +112,8 @@ I need to know where I've travelled from
  => #<Oystercard:0x00007ffb9e1412b0 @balance=4, @entry_station=nil> 
 2.7.0 :010 > oyster.in_journey?
  => false
-
+```
+```text
 In order to know where I have been
 As a customer
 I want to see all my previous trips
@@ -119,6 +137,7 @@ I want to see all my previous trips
  oyster.show_journeys
  => [{:entry_station=>"Paddington", :exit_station=>"Marylebone"}] 
 
+ short version:
  2.7.0 :003 > oyster.top_up(5)
  => 5 
 2.7.0 :004 > oyster.touch_in('Paddington')
@@ -127,9 +146,11 @@ I want to see all my previous trips
  => nil 
  2.7.0 :007 > oyster.show_journeys
  => [{:entry_station=>"Paddington", :exit_station=>"Marylebone"}]
-
+```
+```text
  In order to know how far I have travelled
 As a customer
 I want to know what zone a station is in
 
+:pending output
 ```
